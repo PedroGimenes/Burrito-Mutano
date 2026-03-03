@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutano · Burrito Titans</title>
+    <!-- Fonte jovem e descolada (Poppins) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (ícones) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1a2e1f;  /* verde escuro floresta (mutano) */
+            color: #f0f7da;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* █▓▒░ FUNDO COM SILHUETAS DE BURRITOS E FOLHAS ░▒▓█ */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" opacity="0.15"><path fill="%238bc34a" d="M55 110q10-15 25-15 20 0 30 18 5-25 25-30 18-5 28 10 8-18 25-20 20-3 30 12 5-23 22-28 20-6 30 8 3-22 20-30 20-9 32 3 5-18 20-22 18-5 27 7 2-15 15-20 15-6 23 5 2-12 12-17 12-6 20 4-2-10 5-15 10-7 17 0 0-8 7-12 8-4 15 0-3-7 3-12 7-5 14 0-1-5 4-9 7-4 13 2-1-6 5-10 8-3 13 4-1-4 4-7 8-2 12 6-3-2 1-7 6-2 10 5-7 1-1 10 7-1 12 8-5 5-2 15 9-3 12 10-4 5-3 15 12-5 13 11-4 3-5 14 17-10 15 13-4 1-8 13" transform="translate(0 0) scale(0.8)"/><circle cx="80" cy="70" r="12" fill="%23a5d6a5" opacity="0.6"/><circle cx="310" cy="120" r="20" fill="%236d8c4b" opacity="0.5"/><ellipse cx="550" cy="250" rx="40" ry="20" fill="%2390be6d" opacity="0.4"/></svg>');
+            background-repeat: repeat;
+            background-size: 350px 350px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* camada verde mutano (overlay sutil) */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 20% 30%, #427a3b10 0%, #1f3b1f 90%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        main, header, footer {
+            position: relative;
+            z-index: 5;
+        }
+
+        /* cabeçalho MUTANO / TITÃS */
+        header {
+            background: linear-gradient(145deg, #3c6e3c 0%, #1f4f1f 100%);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 5px solid #f3b33d;  /* amarelo raio (Titãs) */
+            box-shadow: 0 10px 0 #0f2b0f;
+            border-radius: 0 0 30px 30px;
+        }
+
+        .header-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* logo mutano + burrito */
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #f3b33d; /* amarelo titã */
+            padding: 0.5rem 1.8rem 0.5rem 1.5rem;
+            border-radius: 100px;
+            color: #1e3a1e;
+            font-weight: 800;
+            font-size: 2rem;
+            letter-spacing: -0.5px;
+            border: 3px solid white;
+            transform: rotate(-1deg);
+            box-shadow: 6px 6px 0 #0a1f0a;
+        }
+
+        .logo-area i {
+            font-size: 2.5rem;
+            color: #2c5e2c;
+            filter: drop-shadow(2px 2px 0 #fcf4d9);
+        }
+
+        /*  MENU COM JEITÃO MUTANO (botões que parecem feijões / tortilhas) */
+        .nav-menu {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu a {
+            color: #1e2b1e;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.3rem;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            background-color: #fada9f;  /* tom tortilha */
+            border: 3px solid #a56b3a;
+            box-shadow: 5px 5px 0 #6b4a2b, 0 8px 0 #3d2b18;
+            transition: all 0.1s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transform: rotate(-0.5deg);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* cada botão tem um ícone de burrito ou folha */
+        .nav-menu a i {
+            font-size: 1.4rem;
+            color: #3a6b2b;
+        }
+
+        .nav-menu a:hover {
+            transform: translateY(4px) rotate(0deg);
+            box-shadow: 2px 2px 0 #6b4a2b, 0 4px 0 #3d2b18;
+            background-color: #ffe6b3;
+        }
+
+        /* botão menu especial com verde mutano */
+        .nav-menu a:first-child {
+            background-color: #b3d95b;
+            border-color: #3c6e3c;
+            box-shadow: 5px 5px 0 #1f4f1f, 0 8px 0 #0f300f;
+        }
+
+        /* conteúdo principal */
+        main {
+            max-width: 1300px;
+            margin: 2rem auto;
+            padding: 1.5rem 2rem;
+        }
+
+        /* blocos de seção com fundo semi-transparente */
+        section {
+            scroll-margin-top: 130px;
+            margin-bottom: 5rem;
+            background: rgba(40, 65, 40, 0.7);
+            backdrop-filter: blur(3px);
+            border-radius: 70px 70px 30px 30px;
+            padding: 2rem 2.5rem;
+            border: 3px solid #f3b33d;
+            box-shadow: 15px 15px 0 #0f2b0f;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #fada9f;
+            text-shadow: 4px 4px 0 #4f7a3f, 6px 6px 0 #1a2e1a;
+            margin-bottom: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            letter-spacing: -0.5px;
+            border-bottom: 6px dotted #f3b33d;
+            padding-bottom: 1rem;
+        }
+
+        .section-title i {
+            background: #3b6e3b;
+            padding: 0.8rem;
+            border-radius: 80px;
+            font-size: 2.5rem;
+            color: #fada9f;
+            border: 3px solid #f3b33d;
+            transform: rotate(-5deg);
+        }
+
+        /* CARDS NO ESTILO MUTANO (metamorfose de burrito) */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2.2rem;
+        }
+
+        .card {
+            background: #fcf2dd;
+            border-radius: 60px 60px 30px 30px;
+            padding: 2rem 1.5rem;
+            color: #2c472c;
+            border: 4px solid #7baa47;
+            box-shadow: 12px 12px 0 #3d613d;
+            transition: all 0.15s;
+            display: flex;
+            flex-direction: column;
+            transform: rotate(0.5deg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: rotate(-1deg) scale(1.02);
+            box-shadow: 6px 6px 0 #7baa47, 0 0 0 3px #f3b33d;
+        }
+
+        /* enfeite mutano: folhas saindo do card */
+        .card::after {
+            content: "🌿🌱";
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+            font-size: 2.5rem;
+            opacity: 0.3;
+            transform: rotate(10deg);
+            pointer-events: none;
+        }
+
+        .card i {
+            font-size: 4rem;
+            color: #3f7e3f;
+            filter: drop-shadow(4px 4px 0 #f3b33d);
+            margin-bottom: 0.5rem;
+        }
+
+        .card h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card p {
+            color: #2d4a2d;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .tag {
+            background-color: #f3b33d;
+            color: #2e472e;
+            padding: 0.4rem 1.4rem;
+            border-radius: 60px;
+            font-weight: 700;
+            align-self: flex-start;
+            border: 2px solid white;
+            font-size: 1rem;
+            box-shadow: 3px 3px 0 #b47d2e;
+        }
+
+        /* SEÇÃO SOBRE COM MUTANO E BURRITOS */
+        .about-mutano {
+            background: #83b735b0;
+            backdrop-filter: blur(4px);
+            border-radius: 70px;
+            padding: 3rem;
+            border: 5px solid #f3b33d;
+            box-shadow: inset 0 -5px 0 #4d7a3d, 15px 15px 0 #1b381b;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 2 1 300px;
+        }
+
+        .about-text h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #ffd966;
+            text-shadow: 3px 3px 0 #517d37;
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            background: rgba(0,0,0,0.2);
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            border-left: 12px solid #f3b33d;
+            font-weight: 600;
+        }
+
+        .mutano-quote {
+            background: #2b472b;
+            border-radius: 100px;
+            padding: 1rem 2rem;
+            display: inline-block;
+            color: #f7d970;
+            font-weight: 700;
+            font-size: 1.5rem;
+            border: 3px solid #f3b33d;
+            box-shadow: 6px 6px 0 #0f2b0f;
+        }
+
+        .about-image {
+            flex: 1 1 200px;
+            background: #fada9f;
+            border-radius: 50% 30% 50% 30%;
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 8rem;
+            border: 8px solid #f3b33d;
+            color: #427a3b;
+            transform: rotate(4deg);
+            box-shadow: 18px 15px 0 #1e3d1e;
+        }
+
+        .about-image i {
+            filter: drop-shadow(8px 8px 0 #a5b835);
+        }
+
+        /* extras com temática mutano/fera */
+        .extras-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .extra-item {
+            background: #598b4cb0;
+            border-radius: 40px;
+            padding: 1rem 2rem 1rem 1.5rem;
+            border: 3px solid #fada9f;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 600;
+            font-size: 1.2rem;
+            backdrop-filter: blur(2px);
+            flex: 1 1 auto;
+        }
+
+        .extra-item i {
+            font-size: 2.5rem;
+            color: #f3b33d;
+        }
+
+        /* rodapé titã */
+        footer {
+            background: #142014;
+            padding: 2.5rem 2rem;
+            border-top: 8px solid #f3b33d;
+            text-align: center;
+            font-weight: 600;
+            color: #d4c78c;
+            clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
+        }
+
+        footer span {
+            color: #f3b33d;
+            font-size: 1.8rem;
+            display: inline-block;
+            transform: rotate(-3deg);
+        }
+
+        /* responsividade */
+        @media (max-width: 700px) {
+            .section-title { font-size: 2.4rem; }
+            .logo-area { font-size: 1.5rem; }
+            .nav-menu a { font-size: 1rem; padding: 0.5rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="logo-area">
+            <i class="fas fa-burrito"></i>
+            <span>MUTANO BURRITO</span>
+            <i class="fas fa-leaf"></i>
+        </div>
+
+        <!-- MENU: 3 botões com ícones de mutano / burrito -->
+        <nav class="nav-menu">
+            <a href="#menu"><i class="fas fa-bars"></i> menu</a>
+            <a href="#sabores"><i class="fas fa-pepper-hot"></i> sabores</a>
+            <a href="#sobre-mutano"><i class="fas fa-paw"></i> sobre</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <!-- SEÇÃO MENU (âncora #menu) -->
+    <section id="menu">
+        <h2 class="section-title"><i class="fas fa-burrito"></i> Menu que vira bicho</h2>
+        <div class="card-grid">
+            <div class="card">
+                <i class="fas fa-dragon"></i>
+                <h3>Dragão verde <span style="font-size:1.2rem;">(mutano style)</span></h3>
+                <p>Burrito gigante com guacamole, coentro, limão e pimenta verde. Vira um dragão depois da primeira mordida.</p>
+                <span class="tag">🌱 poderes verdes</span>
+            </div>
+            <div class="card">
+                <i class="fas fa-frog"></i>
+                <h3>Sapo saltitante</h3>
+                <p>Tortilha de espinafre, recheio de frango com chimichurri e arroz de brócolis. PUUUH!</p>
+                <span class="tag">sapo</span>
+            </div>
+            <div class="card">
+                <i class="fas fa-dog"></i>
+                <h3>Lobo faminto</h3>
+                <p>Carne de panela desfiada, feijão preto, queijo e jalapeño. Uivo de satisfação garantido.</p>
+                <span class="tag">lobisomem</span>
+            </div>
+            <div class="card">
+                <i class="fas fa-tree"></i>
+                <h3>Árvore mutante</h3>
+                <p>Veggie: cogumelos, abobrinha, milho, molho de pimentão assado e farofa de castanhas.</p>
+                <span class="tag">🌳 metamorfose</span>
+            </div>
+        </div>
+        <!-- brincadeira mutano -->
+        <div style="margin-top: 2rem; background:#d9c58b; color:#1f4a1f; padding:1rem 2rem; border-radius:60px; font-weight:700; text-align:center; border:4px solid #f3b33d;">
+            <i class="fas fa-paw"></i> “Mutano vira qualquer burrito que quiser!” <i class="fas fa-burrito"></i>
+        </div>
+    </section>
+
+    <!-- SEÇÃO SABORES (âncora #sabores) com ainda mais mutano -->
+    <section id="sabores">
+        <h2 class="section-title"><i class="fas fa-pepper-hot"></i> Sabores animais</h2>
+        <div class="card-grid">
+            <div class="card" style="background: #ebcba0;">
+                <i class="fas fa-hippo"></i>
+                <h3>Hipopótamo picante</h3>
+                <p>Linguiça apimentada, feijão vermelho, cebola roxa e pimenta dedo-de-moça. Pesa like a hippo.</p>
+                <span class="tag">forte</span>
+            </div>
+            <div class="card" style="background: #ebcba0;">
+                <i class="fas fa-crow"></i>
+                <h3>Corvo defumado</h3>
+                <p>Frango defumado, cream cheese, milho tostado e tiras de tortilha crocantes.</p>
+                <span class="tag">fumê</span>
+            </div>
+            <div class="card" style="background: #ebcba0;">
+                <i class="fas fa-fish"></i>
+                <h3>Peixe-lua</h3>
+                <p>Recheio de atum com manga, cream cheese, coentro e limão. Refrescante.</p>
+                <span class="tag">marítimo</span>
+            </div>
+            <div class="card" style="background: #ebcba0;">
+                <i class="fas fa-otter"></i>
+                <h3>Lontra feliz</h3>
+                <p>Camarão ao alho, abacaxi grelhado, pimentão e molho de tangerina.</p>
+                <span class="tag">cítrico</span>
+            </div>
+        </div>
+        <!-- mais um toque mutano: lista de animais -->
+        <div class="extras-grid">
+            <div class="extra-item"><i class="fas fa-cow"></i> Vaca (recheio de carne assada)</div>
+            <div class="extra-item"><i class="fas fa-piggy-bank"></i> Porco (carnitas com abacaxi)</div>
+            <div class="extra-item"><i class="fas fa-kiwi-bird"></i> Kiwi (frango com kiwi e hortelã)</div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO SOBRE (âncora #sobre-mutano) com foco no mutano e burritos -->
+    <section id="sobre-mutano">
+        <h2 class="section-title"><i class="fas fa-paw"></i> Sobre o mutano & burritos</h2>
+        <div class="about-mutano">
+            <div class="about-text">
+                <h2><i class="fas fa-leaf"></i> Mutano: o mestre das transformações</h2>
+                <p>Garfield Mark (Mutano) dos Jovens Titãs adora comida. E adora ainda mais <strong>burritos</strong>! Diz a lenda que ele consegue virar qualquer burrito — de carne, frango ou vegetariano — apenas provando um pedaço. Ele já salvou Jump City virando um gigante burrito de feijão.</p>
+                <p><i class="fas fa-burrito" style="margin-right: 8px;"></i> Inspirados nesse herói versátil, criamos burritos que mudam de forma: cada sabor te leva a uma nova experiência. Você pode começar como um lobo faminto e terminar como uma árvore relaxada.</p>
+                <div class="mutano-quote">
+                    <i class="fas fa-quote-left"></i> Virar burrito é a minha terceira transformação favorita!
+                </div>
+            </div>
+            <div class="about-image">
+                <i class="fas fa-burrito"></i>
+                <div style="font-size: 2rem; color:#1f3d1f;">MUTANO</div>
+            </div>
+        </div>
+
+        <!-- cards explicando a fusão mutano + burrito -->
+        <div style="display: flex; gap: 1.8rem; flex-wrap: wrap; margin-top: 2.5rem;">
+            <div style="background: #3e6d3e; border-radius: 50px; padding: 1.8rem; flex: 1 1 200px; border: 4px solid #f3b33d;">
+                <i class="fas fa-dragon fa-2x" style="color: #fada9f;"></i>
+                <h3 style="color:#f3b33d;">forma burrito</h3>
+                <p>Mutano já assumiu a forma de burrito gigante pra enrolar o Dr. Luz. Foi épico e delicioso.</p>
+            </div>
+            <div style="background: #3e6d3e; border-radius: 50px; padding: 1.8rem; flex: 1 1 200px; border: 4px solid #f3b33d;">
+                <i class="fas fa-seedling fa-2x" style="color: #fada9f;"></i>
+                <h3 style="color:#f3b33d;">poder vegetal</h3>
+                <p>Nossos burritos têm ingredientes verdes que dariam superpoderes a qualquer herói.</p>
+            </div>
+            <div style="background: #3e6d3e; border-radius: 50px; padding: 1.8rem; flex: 1 1 200px; border: 4px solid #f3b33d;">
+                <i class="fas fa-drumstick-bite fa-2x" style="color: #fada9f;"></i>
+                <h3 style="color:#f3b33d;">sabor titã</h3>
+                <p>Cada receita tem um toque especial: a gente coloca "pó de mutano" (tempero secreto).</p>
+            </div>
+        </div>
+
+        <!-- mais ilustração mutano/burrito -->
+        <div style="text-align: center; margin: 3rem 0 1rem;">
+            <span style="background: #2f4f2f; padding: 1rem 3rem; border-radius: 100px; border: 5px solid #f3b33d; font-weight: 800; font-size: 2rem; display: inline-block; transform: rotate(-1deg);"><i class="fas fa-bolt"></i> TITÃS BURRITO <i class="fas fa-bolt"></i></span>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p><span>🍥 MUTANO BURRITO HOUSE 🍥</span></p>
+    <p><i class="fas fa-burrito"></i> menu · sabores · sobre <i class="fas fa-paw"></i></p>
+    <p>Transforme sua fome em um herói · Jump City - Torre dos Titãs</p>
+    <p style="font-size:0.9rem; margin-top:1.5rem;">® 2026 - Jovens Titãs em Ação (e burritos) </p>
+</footer>
+
+</body>
+</html>
