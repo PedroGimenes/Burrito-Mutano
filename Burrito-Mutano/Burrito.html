@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B'S • burritos artesanais</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4fbf6;
+      color: #1e2e24;
+      line-height: 1.5;
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #E8F5E9;
+      box-shadow: 0 4px 20px rgba(0, 40, 0, 0.04);
+      padding: 1rem 2rem;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      backdrop-filter: blur(2px);
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      color: #1b4b2b;
+      line-height: 1.2;
+    }
+    .logo span {
+      font-weight: 300;
+      color: #2e7d4e;
+    }
+
+    .nav {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-btn {
+      background-color: #81A895;
+      border: none;
+      padding: 0.7rem 2rem;
+      border-radius: 60px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: white;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 8px rgba(0, 30, 0, 0.08);
+      letter-spacing: 0.3px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .nav-btn:hover {
+      background-color: #2D6A4F;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 18px rgba(27, 75, 43, 0.2);
+    }
+
+    .nav-btn:active {
+      transform: translateY(1px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+
+    .main-content {
+      margin-top: 100px;
+      padding: 1.5rem 2rem 3rem;
+      max-width: 1400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+
+    .image-wrapper {
+      position: relative;
+      max-width: 1100px;
+      width: 100%;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: 0 25px 40px -12px rgba(20, 60, 30, 0.35);
+      transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
+    }
+
+    .image-wrapper:hover {
+      transform: scale(1.01);
+    }
+
+    .hero-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .image-wrapper:hover .hero-image {
+      transform: scale(1.03);
+    }
+
+    .overlay-gradient {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(145deg, rgba(80, 120, 90, 0.12) 0%, rgba(30, 70, 40, 0.2) 100%);
+      pointer-events: none;
+      z-index: 5;
+      border-radius: 32px;
+    }
+
+    .hero-caption {
+      text-align: center;
+      margin-top: 1.5rem;
+      color: #3f5e4b;
+      font-weight: 300;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+    }
+
+    .hero-caption strong {
+      font-weight: 600;
+      color: #2D6A4F;
+    }
+
+    /* ===== SEÇÕES SABORES E SOBRE ===== */
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 500;
+      color: #1b4b2b;
+      margin: 4rem 0 2rem;
+      text-align: center;
+      letter-spacing: -0.5px;
+    }
+
+    .section-title span {
+      background-color: #E8F5E9;
+      padding: 0.2rem 2rem;
+      border-radius: 60px;
+      display: inline-block;
+    }
+
+    /* Cards de sabores - BURRITOS */
+    .flavors-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0 3rem;
+    }
+
+    .flavor-card {
+      background-color: white;
+      border-radius: 28px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 12px 28px -10px rgba(40, 80, 50, 0.12);
+      transition: all 0.3s ease;
+      border: 1px solid #e2f0e5;
+      text-align: center;
+    }
+
+    .flavor-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 22px 38px -12px #2d6a4f55;
+      border-color: #b7dac5;
+    }
+
+    .flavor-icon {
+      font-size: 3.2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .flavor-card h3 {
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: #2D6A4F;
+      margin-bottom: 0.8rem;
+    }
+
+    .flavor-card p {
+      color: #4a6b57;
+      font-weight: 400;
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+    }
+
+    .flavor-price {
+      font-weight: 600;
+      color: #1b4b2b;
+      font-size: 1.3rem;
+      border-top: 2px dotted #c0ddcc;
+      padding-top: 1rem;
+    }
+
+    /* Seção Sobre */
+    .about-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      background: #ffffffd9;
+      backdrop-filter: blur(4px);
+      border-radius: 48px;
+      padding: 3rem;
+      margin: 2rem 0 3rem;
+      border: 1px solid #deedd9;
+      box-shadow: 0 18px 30px -12px #2f4d3e30;
+    }
+
+    .about-text {
+      flex: 2;
+      min-width: 280px;
+    }
+
+    .about-text h3 {
+      font-size: 2rem;
+      font-weight: 500;
+      color: #2D6A4F;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-text p {
+      font-size: 1.2rem;
+      color: #345f42;
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    .about-highlight {
+      background-color: #E8F5E9;
+      padding: 1.5rem 2rem;
+      border-radius: 40px;
+      color: #1d4e2e;
+      font-weight: 500;
+      border: 1px solid #a6cdb5;
+    }
+
+    .about-image {
+      flex: 1;
+      min-width: 240px;
+      border-radius: 36px;
+      overflow: hidden;
+      box-shadow: 0 25px 30px -18px #23462e;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      display: block;
+    }
+
+    .about-image:hover img {
+      transform: scale(1.06);
+    }
+
+    /* Info row (secundário) */
+    .info-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin: 3rem 0 2rem;
+      color: #2b4b37;
+    }
+
+    .info-item {
+      background-color: #ffffffc7;
+      backdrop-filter: blur(2px);
+      padding: 1rem 2.2rem;
+      border-radius: 80px;
+      font-weight: 400;
+      box-shadow: 0 8px 18px -8px rgba(50, 80, 60, 0.12);
+      border: 1px solid #d9ead3;
+      color: #1d3929;
+      font-size: 1.05rem;
+    }
+
+    .info-item span {
+      font-weight: 600;
+      color: #2D6A4F;
+      margin-right: 0.3rem;
+    }
+
+    /* Rodapé */
+    .footer-note {
+      margin-top: 5rem;
+      text-align: center;
+      color: #9bb7a4;
+      font-size: 0.95rem;
+      border-top: 1px solid #d4e8da;
+      padding-top: 2rem;
+      font-weight: 300;
+    }
+
+    /* ===== RESPONSIVIDADE ===== */
+    @media (max-width: 720px) {
+      .header {
+        flex-direction: column;
+        gap: 0.8rem;
+        padding: 1rem;
+      }
+      .nav {
+        gap: 0.6rem;
+      }
+      .nav-btn {
+        padding: 0.5rem 1.3rem;
+        font-size: 1rem;
+      }
+      .main-content {
+        margin-top: 140px;
+        padding: 1rem 1rem 2rem;
+      }
+      .logo {
+        font-size: 2.2rem;
+      }
+      .info-item {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.95rem;
+      }
+      .about-container {
+        padding: 1.8rem;
+      }
+      .about-text p {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-btn {
+        padding: 0.45rem 1rem;
+        font-size: 0.9rem;
+      }
+      .hero-caption {
+        font-size: 1rem;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
+    }
+
+    .nav-btn:focus-visible {
+      outline: 3px solid #a3d8b2;
+      outline-offset: 2px;
+    }
+
+    .hero-image {
+      content: url("imgs/burrito.PNG");
+      max-height: 650px;
+      object-position: center 30%;
+    }
+
+    .image-wrapper {
+      background-color: #d0e6d5;
+      min-height: 300px;
+    }
+
+    .overlay-gradient {
+      mix-blend-mode: overlay;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">B’S <span>· burritos</span></div>
+    <nav class="nav">
+      <a href="#menu" class="nav-btn">Menu</a>
+      <a href="#sabores" class="nav-btn">Sabores</a>
+      <a href="#sobre" class="nav-btn">Sobre</a>
+    </nav>
+    <div style="width: 70px; opacity: 0;"> </div>
+  </header>
+
+  <main class="main-content">
+    <!-- Seção hero (burrito em destaque) -->
+    <section id="menu">
+      <div class="hero">
+        <div class="image-wrapper">
+          <img class="hero-image" src="imgs/burrito.PNG" 
+               alt="Burritos Veganos - B'S burritos">
+          <div class="overlay-gradient"></div>
+        </div>
+      </div>
+      <div class="hero-caption">
+        <strong>burrito da casa</strong> · arroz, feijão, carne, queijo e guacamole · <span style="color:#2D6A4F;">R$ 32,90</span>
+      </div>
+    </section>
+
+    <!-- SABORES DE BURRITO -->
+    <section id="sabores">
+      <h2 class="section-title"><span>🌯 sabores de burrito</span></h2>
+      <div class="flavors-grid">
+        <div class="flavor-card">
+          <div class="flavor-icon">🌯</div>
+          <h3>Clássico</h3>
+          <p>arroz, feijão, carne moída, queijo cheddar e sour cream</p>
+          <div class="flavor-price">R$ 28,90</div>
+        </div>
+        <div class="flavor-card">
+          <div class="flavor-icon">🥑</div>
+          <h3>Guacamole</h3>
+          <p>frango desfiado, arroz, feijão, guacamole fresco e pico de gallo</p>
+          <div class="flavor-price">R$ 31,50</div>
+        </div>
+        <div class="flavor-card">
+          <div class="flavor-icon">🌶️</div>
+          <h3>Picante</h3>
+          <p>carne picante, arroz, feijão preto, jalapeño e molho chipotle</p>
+          <div class="flavor-price">R$ 30,90</div>
+        </div>
+        <div class="flavor-card">
+          <div class="flavor-icon">🐖</div>
+          <h3>Cochinita</h3>
+          <p>cochinita pibil, cebola roxa, coentro e habanero</p>
+          <div class="flavor-price">R$ 34,90</div>
+        </div>
+        <div class="flavor-card">
+          <div class="flavor-icon">🥗</div>
+          <h3>Vegetariano</h3>
+          <p>proteína de soja, arroz integral, feijão, abacate e milho</p>
+          <div class="flavor-price">R$ 27,90</div>
+        </div>
+        <div class="flavor-card">
+          <div class="flavor-icon">🦐</div>
+          <h3>Camarão</h3>
+          <p>camarões grelhados, arroz de limão, pimentão e maionese de chipotle</p>
+          <div class="flavor-price">R$ 39,90</div>
+        </div>
+        <div class="flavor-card">
+          <div class="flavor-icon">🍗</div>
+          <h3>Frango Chipotle</h3>
+          <p>frango grelhado, arroz, feijão preto, milho, molho chipotle e queijo</p>
+          <div class="flavor-price">R$ 32,90</div>
+        </div>
+        <div class="flavor-card">
+          <div class="flavor-icon">🥩</div>
+          <h3>Barbacoa</h3>
+          <p>carne desfiada temperada, arroz, feijão, cebola roxa, coentro e molho especial</p>
+          <div class="flavor-price">R$ 33,90</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section id="sobre">
+      <h2 class="section-title"><span>🌵 nossa história</span></h2>
+      <div class="about-container">
+        <div class="about-text">
+          <h3>B’S burritos artesanais</h3>
+          <p>Nossa jornada começou em 2018 com uma missão: trazer o sabor autêntico dos burritos mexicanos com ingredientes frescos e locais. Cada burrito é montado na hora, com receitas que passam de geração em geração.</p>
+          <p>Usamos tortilhas artesanais, carnes marinadas por 12h e vegetais orgânicos. O resultado é um burrito suculento, equilibrado e cheio de personalidade.</p>
+          <div class="about-highlight">
+            🌯 <strong>+8 mil burritos vendidos</strong> · ingredientes frescos · delivery próprio
+          </div>
+        </div>
+        <div class="about-image">
+          <img src="imgs/unnamed.jpg" 
+               alt="Chef preparando burrito artesanal na B'S">
+        </div>
+      </div>
+    </section>
+
+    <!-- Detalhes secundários -->
+    <div class="info-row">
+      <div class="info-item"><span>🌯</span> 6 sabores de burrito</div>
+      <div class="info-item"><span>🥑</span> guacamole fresco</div>
+      <div class="info-item"><span>🌮</span> tortilha artesanal</div>
+    </div>
+
+    <footer class="footer-note">
+      <p>B’S burritos · seg a sáb 11h–23h · rua das delícias, 45</p>
+      <p style="margin-top: 0.5rem; font-size: 0.85rem;">⏎ sabor autêntico mexicano com frescor local</p>
+    </footer>
+  </main>
+</body>
+</html>
