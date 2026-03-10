@@ -54,11 +54,11 @@
     }
 
     .nav {
-      display: flex;
-      gap: 1.2rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+       display: flex;
+       gap: 1.2rem;
+       flex-wrap: wrap;
+       justify-content: flex-start;
+      }
 
     .nav-btn {
       background-color: #81A895;
@@ -68,7 +68,7 @@
       font-family: 'Poppins', sans-serif;
       font-size: 1.1rem;
       font-weight: 500;
-      color: white;
+      color: black;
       cursor: pointer;
       transition: all 0.25s ease;
       box-shadow: 0 4px 8px rgba(0, 30, 0, 0.08);
@@ -157,7 +157,6 @@
       color: #2D6A4F;
     }
 
-    /* ===== SEÇÕES SABORES E SOBRE ===== */
     .section-title {
       font-size: 2.2rem;
       font-weight: 500;
@@ -174,7 +173,6 @@
       display: inline-block;
     }
 
-    /* Cards de sabores - BURRITOS */
     .flavors-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -288,7 +286,6 @@
       transform: scale(1.06);
     }
 
-    /* Info row (secundário) */
     .info-row {
       display: flex;
       flex-wrap: wrap;
@@ -316,7 +313,6 @@
       margin-right: 0.3rem;
     }
 
-    /* Rodapé */
     .footer-note {
       margin-top: 5rem;
       text-align: center;
@@ -327,7 +323,6 @@
       font-weight: 300;
     }
 
-    /* ===== RESPONSIVIDADE ===== */
     @media (max-width: 720px) {
       .header {
         flex-direction: column;
@@ -397,7 +392,7 @@
 </head>
 <body>
   <header class="header">
-    <div class="logo">B’S <span>· burritos</span></div>
+    <div class="logo">B’S</div>
     <nav class="nav">
       <a href="#menu" class="nav-btn">Menu</a>
       <a href="#sabores" class="nav-btn">Sabores</a>
@@ -407,7 +402,6 @@
   </header>
 
   <main class="main-content">
-    <!-- Seção hero (burrito em destaque) -->
     <section id="menu">
       <div class="hero">
         <div class="image-wrapper">
@@ -421,9 +415,8 @@
       </div>
     </section>
 
-    <!-- SABORES DE BURRITO -->
     <section id="sabores">
-      <h2 class="section-title"><span>🌯 sabores de burrito</span></h2>
+      <h2 class="section-title"><span>Sabores de burrito</span></h2>
       <div class="flavors-grid">
         <div class="flavor-card">
           <div class="flavor-icon">🌯</div>
@@ -473,20 +466,40 @@
           <p>carne desfiada temperada, arroz, feijão, cebola roxa, coentro e molho especial</p>
           <div class="flavor-price">R$ 33,90</div>
         </div>
+        <div class="flavor-card">
+          <div class="flavor-icon">🥚</div>
+          <h3>Breakfast Burrito</h3>
+          <p>ovos mexidos, bacon crocante, batata rústica, queijo cheddar, feijão e sour cream</p>
+          <div class="flavor-price">R$ 29,90</div>
+        </div>
+        <div class="flavor-card">
+          <div class="flavor-icon">🐟</div>
+          <h3>Ceviche de Burrito</h3>
+          <p>tilápia grelhada, arroz de limão, feijão branco, pico de gallo, abacate e creme de coentro</p>
+          <div class="flavor-price">R$ 36,90</div>
+        </div>
+        <div class="flavor-card">
+          <div class="flavor-icon">🌿</div>
+          <h3>Chipotle Veggie</h3>
+          <p>legumes grelhados (abobrinha, pimentão, cebola), arroz, feijão, guacamole e molho chipotle</p>
+          <div class="flavor-price">R$ 28,90</div>
+        </div>
+        <div class="flavor-card">
+          <div class="flavor-icon">🍍</div>
+          <h3>Havaiano</h3>
+          <p>carne de porco, abacaxi grelhado, arroz, feijão preto, bacon e molho barbecue picante</p>
+          <div class="flavor-price">R$ 33,90</div>
+        </div>
       </div>
     </section>
 
-    <!-- SOBRE -->
     <section id="sobre">
-      <h2 class="section-title"><span>🌵 nossa história</span></h2>
+      <h2 class="section-title"><span> Nossa História</span></h2>
       <div class="about-container">
         <div class="about-text">
           <h3>B’S burritos artesanais</h3>
-          <p>Nossa jornada começou em 2018 com uma missão: trazer o sabor autêntico dos burritos mexicanos com ingredientes frescos e locais. Cada burrito é montado na hora, com receitas que passam de geração em geração.</p>
+          <p>O burrito é um dos ícones mais famosos da culinária "Tex-Mex" e da região norte do México. No fundo, ele é uma tortilha de trigo macia e grande, enrolada de forma a envolver completamente um recheio generoso.</p>
           <p>Usamos tortilhas artesanais, carnes marinadas por 12h e vegetais orgânicos. O resultado é um burrito suculento, equilibrado e cheio de personalidade.</p>
-          <div class="about-highlight">
-            🌯 <strong>+8 mil burritos vendidos</strong> · ingredientes frescos · delivery próprio
-          </div>
         </div>
         <div class="about-image">
           <img src="imgs/unnamed.jpg" 
@@ -495,16 +508,8 @@
       </div>
     </section>
 
-    <!-- Detalhes secundários -->
-    <div class="info-row">
-      <div class="info-item"><span>🌯</span> 6 sabores de burrito</div>
-      <div class="info-item"><span>🥑</span> guacamole fresco</div>
-      <div class="info-item"><span>🌮</span> tortilha artesanal</div>
-    </div>
-
     <footer class="footer-note">
       <p>B’S burritos · seg a sáb 11h–23h · rua das delícias, 45</p>
-      <p style="margin-top: 0.5rem; font-size: 0.85rem;">⏎ sabor autêntico mexicano com frescor local</p>
     </footer>
   </main>
 </body>
